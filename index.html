@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seven Six Labs — Building thoughtful software</title>
+  <meta name="description" content="Seven Six Labs builds a portfolio of consumer apps and offers AI consulting services for teams shipping intelligent products." />
+  <meta property="og:title" content="Seven Six Labs" />
+  <meta property="og:description" content="A studio building consumer apps and AI consulting services." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>76</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">76</span>
+        <span class="brand-name">Seven Six Labs</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#apps">Apps</a>
+        <a href="#consulting">Consulting</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Independent software studio</p>
+        <h1>We build thoughtful software for everyday life.</h1>
+        <p class="lede">
+          Seven Six Labs is a studio shipping a portfolio of consumer apps
+          and partnering with companies on AI strategy and implementation.
+        </p>
+        <div class="cta-row">
+          <a href="#apps" class="btn btn-primary">See our apps</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps" class="section">
+      <div class="container">
+        <h2>Our apps</h2>
+        <p class="section-lede">
+          A growing collection of products designed and built in-house.
+        </p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-mark nouri">N</div>
+            <h3>Nouri</h3>
+            <p>
+              A focused companion for tracking how you eat and feel — built
+              for people who want clarity without calorie-counting noise.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-mark goodeats">MG</div>
+            <h3>Many Goodeats</h3>
+            <p>
+              A curated way to discover, save, and revisit the food and
+              places you actually love. Less algorithm, more taste.
+            </p>
+          </article>
+          <article class="card card-soft">
+            <div class="card-mark soon">+</div>
+            <h3>More in the works</h3>
+            <p>
+              We're always prototyping. New apps ship under the Seven Six
+              Labs umbrella as DBAs of our parent studio.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="consulting" class="section section-alt">
+      <div class="container consulting-grid">
+        <div>
+          <p class="eyebrow">AI Consulting</p>
+          <h2>Helping teams ship with AI — well.</h2>
+          <p>
+            Through our consulting practice, we work with founders and
+            product teams to design, prototype, and deploy AI features
+            that hold up in production. From RAG systems and agent
+            workflows to evaluation infrastructure, we focus on what
+            actually moves the needle.
+          </p>
+          <a href="#contact" class="btn btn-primary">Start a conversation</a>
+        </div>
+        <ul class="capabilities">
+          <li><strong>Product strategy</strong><span>Where AI fits — and where it doesn't.</span></li>
+          <li><strong>Prototyping</strong><span>Fast, opinionated builds to validate ideas.</span></li>
+          <li><strong>Production systems</strong><span>Evals, observability, and reliability.</span></li>
+          <li><strong>Team enablement</strong><span>Workshops and pairing for in-house teams.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact-wrap">
+        <div>
+          <h2>Get in touch</h2>
+          <p class="section-lede">
+            Tell us about your project, your team, or just say hello.
+          </p>
+        </div>
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- TODO: replace with your Web3Forms access key from https://web3forms.com -->
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="New inquiry from sevensixlabs.com" />
+          <input type="hidden" name="from_name" value="Seven Six Labs site" />
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Company <em>(optional)</em></span>
+            <input type="text" name="company" />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Seven Six Labs, LLC</span>
+      <span>hello@sevensixlabs.com</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.querySelector('.contact-form');
+    const status = document.getElementById('formStatus');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: data });
+        if (res.ok) {
+          form.reset();
+          status.textContent = 'Thanks — we\u2019ll be in touch shortly.';
+        } else {
+          status.textContent = 'Something went wrong. Email hello@sevensixlabs.com instead.';
+        }
+      } catch {
+        status.textContent = 'Network error. Email hello@sevensixlabs.com instead.';
+      }
+    });
+  </script>
+</body>
+</html>
