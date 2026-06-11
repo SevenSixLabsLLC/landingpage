@@ -154,6 +154,17 @@ h2 {
 .card-mark.nouri { background: #1f3a2e; color: #6ee7b7; }
 .card-mark.goodeats { background: #3a2a1f; color: #fbbf77; }
 .card-mark.soon { background: #1f2a3a; color: #93c5fd; }
+.card-link { display: block; color: inherit; }
+.card-arrow {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--muted);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.card-link:hover .card-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
 .card-soft { background: transparent; border-style: dashed; }
 
 /* Consulting */
